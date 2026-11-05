@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grading Assistant Template · Canarie</title>
+<meta name="description" content="Download the AGENTS.md and SKILL.md template from the Canarie teacher workshop.">
+<style>
+  :root {
+    --bg: #f7f5f0; --card: #ffffff; --ink: #0e1a2b; --muted: #5a6b7f;
+    --accent: #8c6936; --btn: #0e1a2b; --btn-ink: #f7f5f0; --line: #c9cfd6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e1a2b; --card: #16253a; --ink: #f7f5f0; --muted: #90a0b0;
+      --accent: #b5894c; --btn: #b5894c; --btn-ink: #0e1a2b; --line: #2c3e55;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 720px; margin: 0 auto; padding: 48px 20px 64px; }
+  .label { display: flex; justify-content: space-between; gap: 16px; margin: 0 0 40px;
+           padding-bottom: 10px; border-bottom: 1px solid var(--ink);
+           font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  h1, h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
+  h1 { font-size: clamp(34px, 6vw, 52px); line-height: 1.15; margin: 0 0 16px; }
+  h2 { font-size: 28px; margin: 0 0 16px; }
+  .lead { color: var(--muted); margin: 0 0 32px; }
+  .btn { display: inline-block; background: var(--btn); color: var(--btn-ink); text-decoration: none;
+         font-weight: 600; padding: 16px 28px; border-radius: 6px; }
+  .btn:hover { opacity: .9; }
+  .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .small { font-size: 14px; color: var(--muted); margin: 12px 0 48px; }
+  ol { list-style: none; padding: 0; margin: 0 0 24px; counter-reset: step; }
+  ol li { counter-increment: step; display: grid; grid-template-columns: 56px 1fr; gap: 8px;
+          padding: 16px 0; border-top: 1px solid var(--line); }
+  ol li:last-child { border-bottom: 1px solid var(--line); }
+  ol li::before { content: counter(step, decimal-leading-zero); font-family: Georgia, serif;
+                  font-size: 28px; line-height: 1.2; color: var(--muted); }
+  code { font-family: ui-monospace, Consolas, monospace; font-size: .9em; background: var(--card);
+         border: 1px solid var(--line); border-radius: 4px; padding: 1px 5px; }
+  .note { background: var(--card); border-left: 4px solid var(--accent); padding: 16px 20px; margin: 0 0 40px; }
+  footer { font-size: 14px; color: var(--muted); }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<main>
+  <p class="label"><span>Teacher workshop</span><span>Canarie</span></p>
+
+  <h1>Build your own grading assistant</h1>
+  <p class="lead">The AGENTS.md and SKILL.md template from <em>Designing Assessments and Feedback with AI</em>.
+    Fill it in once with your rubric, and Codex grades homework and drafts feedback the way you do.</p>
+
+  <a class="btn" href="https://github.com/METorKU/canarie-teacher-training/archive/refs/heads/main.zip">Download the template (ZIP)</a>
+  <p class="small">Short link: tinyurl.com/canarie-teacher</p>
+
+  <h2>Get started</h2>
+  <ol>
+    <li><div><strong>Unzip the file.</strong> Inside <code>canarie-teacher-training-main</code> are two folders:
+      <code>template</code> is yours to fill in, <code>demo</code> is the IELTS example from the session.</div></li>
+    <li><div><strong>Open the <code>template</code> folder itself in Codex</strong>, not the folder above it.
+      If Codex asks to trust the folder, say yes.</div></li>
+    <li><div><strong>Fill in each [EDIT].</strong> In <code>AGENTS.md</code>: your class. In <code>SKILL.md</code>:
+      the homework, your rubric, 2 or 3 pieces you already marked, and the feedback language.
+      SKILL.md is in the hidden <code>.agents</code> folder; on a Mac, press Cmd + Shift + . in Finder to see it.</div></li>
+    <li><div><strong>Add student work and ask Codex to grade.</strong> Type “Create data/homework.csv and add these
+      3 pieces of work.”, then “Grade homework hw1-s01, hw1-s02 and hw1-s03.” Use codes, never names.</div></li>
+    <li><div><strong>Read the feedback</strong> in the <code>feedback</code> folder.</div></li>
+  </ol>
+  <p class="small">PDFs or photos? Make a <code>homework</code> folder inside <code>template</code> and put in one file
+    per student, named with a code such as <code>hw1-s01.pdf</code>.</p>
+
+  <div class="note">You are still the marker. Check every score and comment before students see it.</div>
+
+  <footer><a href="https://github.com/METorKU/canarie-teacher-training">View the files on GitHub</a></footer>
+</main>
+</body>
+</html>
