@@ -1,0 +1,7 @@
+id,task_type,word_count,task,coherence,lexical,grammar,overall,flag
+task2-essay-01,task2,260,5.5,5,5,4.5,5,
+task2-essay-02,task2,288,7,7,7,6.5,7,
+task2-essay-03,task2,289,8,8,8,8,8,
+task2-essay-04,task2,116,4.5,4.5,4,4,4.5,check
+task1-essay-01,task1_academic,163,6,6,6,6,6,
+task1-essay-02,task1_gt,170,7,7,6.5,7,7,
