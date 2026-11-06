@@ -3,78 +3,117 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Grading Assistant Template · Canarie</title>
+<title>AI Teacher Template · Canarie</title>
 <meta name="description" content="Download the AGENTS.md and SKILL.md template from the Canarie teacher workshop.">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="https://canarie.tech/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f7f5f0; --card: #ffffff; --ink: #0e1a2b; --muted: #5a6b7f;
-    --accent: #8c6936; --btn: #0e1a2b; --btn-ink: #f7f5f0; --line: #c9cfd6;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0e1a2b; --card: #16253a; --ink: #f7f5f0; --muted: #90a0b0;
-      --accent: #b5894c; --btn: #b5894c; --btn-ink: #0e1a2b; --line: #2c3e55;
-    }
+    --bg: #faf8f4; --card: #ffffff; --ink: #151515; --body: #404040; --navy: #071769;
+    --blue: #3b5ccc; --sky: #5d8aff; --yellow: #ffcc66; --yellow-soft: #fff6e0;
+    --line: rgba(0, 0, 0, .12);
   }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--ink);
-         font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  main { max-width: 720px; margin: 0 auto; padding: 48px 20px 64px; }
-  .label { display: flex; justify-content: space-between; gap: 16px; margin: 0 0 40px;
-           padding-bottom: 10px; border-bottom: 1px solid var(--ink);
-           font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-  h1, h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
-  h1 { font-size: clamp(34px, 6vw, 52px); line-height: 1.15; margin: 0 0 16px; }
-  h2 { font-size: 28px; margin: 0 0 16px; }
-  .lead { color: var(--muted); margin: 0 0 32px; }
-  .btn { display: inline-block; background: var(--btn); color: var(--btn-ink); text-decoration: none;
-         font-weight: 600; padding: 16px 28px; border-radius: 6px; }
-  .btn:hover { opacity: .9; }
-  .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-  .small { font-size: 14px; color: var(--muted); margin: 12px 0 48px; }
-  ol { list-style: none; padding: 0; margin: 0 0 24px; counter-reset: step; }
-  ol li { counter-increment: step; display: grid; grid-template-columns: 56px 1fr; gap: 8px;
-          padding: 16px 0; border-top: 1px solid var(--line); }
-  ol li:last-child { border-bottom: 1px solid var(--line); }
-  ol li::before { content: counter(step, decimal-leading-zero); font-family: Georgia, serif;
-                  font-size: 28px; line-height: 1.2; color: var(--muted); }
-  code { font-family: ui-monospace, Consolas, monospace; font-size: .9em; background: var(--card);
-         border: 1px solid var(--line); border-radius: 4px; padding: 1px 5px; }
-  .note { background: var(--card); border-left: 4px solid var(--accent); padding: 16px 20px; margin: 0 0 40px; }
-  footer { font-size: 14px; color: var(--muted); }
-  a { color: inherit; }
+  body { margin: 0; background: var(--bg); color: var(--ink); overflow-x: hidden;
+         font: 17px/1.65 Nunito, ui-sans-serif, system-ui, sans-serif; }
+  .bg { position: fixed; inset: 0; pointer-events: none; z-index: -1;
+        background-image: linear-gradient(90deg, rgba(7, 23, 105, .03) 1px, transparent 1px),
+                          linear-gradient(rgba(7, 23, 105, .03) 1px, transparent 1px);
+        background-size: 24px 24px; }
+  .blob { position: absolute; border-radius: 50%; filter: blur(64px); }
+  .blob.blue { width: 384px; height: 384px; top: -96px; left: -96px; background: rgba(93, 138, 255, .15); }
+  .blob.yellow { width: 420px; height: 420px; bottom: -120px; right: -120px; background: rgba(255, 204, 102, .25); }
+
+  header { max-width: 1040px; margin: 0 auto; padding: 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  header img { height: 34px; width: auto; display: block; }
+  .nav-link { font-weight: 700; font-size: 14px; color: var(--navy); text-decoration: none;
+              background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; }
+  .nav-link:hover { border-color: var(--navy); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 40px 20px 72px; }
+  .eyebrow { display: block; margin: 0 0 8px; font-size: 13px; font-weight: 700; letter-spacing: .08em; color: var(--blue); }
+  h1, h2, h3 { color: var(--navy); }
+  h1 { font-size: clamp(36px, 6vw, 52px); font-weight: 900; line-height: 1.1; letter-spacing: -.025em; margin: 0 0 18px; }
+  h2 { font-size: clamp(30px, 4.5vw, 40px); font-weight: 900; line-height: 1.15; letter-spacing: -.025em; margin: 0 0 20px; }
+  h3 { font-size: 20px; font-weight: 700; letter-spacing: -.01em; margin: 0 0 4px; }
+  .lead { font-size: 18px; color: var(--body); margin: 0 0 32px; }
+
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 700;
+         border-radius: 14px; padding: 15px 26px; transition: transform .15s, box-shadow .15s; }
+  .btn.primary { background: var(--yellow); color: var(--ink); box-shadow: 0 8px 20px rgba(255, 204, 102, .45); }
+  .btn.secondary { background: var(--card); color: var(--navy); border: 1px solid var(--line); border-radius: 16px; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:focus-visible, .nav-link:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; }
+  .small { font-size: 14px; color: var(--body); margin: 14px 0 64px; }
+
+  .steps { list-style: none; padding: 0; margin: 0 0 20px; display: grid; gap: 12px; counter-reset: step; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px 24px;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, .06); }
+  .steps .card { counter-increment: step; }
+  .tag { display: block; font-size: 12px; font-weight: 700; letter-spacing: .08em; color: var(--blue); margin-bottom: 6px; }
+  .steps .tag::before { content: counter(step, decimal-leading-zero) " // "; }
+  .card p { margin: 0; color: var(--body); }
+  code { font-family: ui-monospace, Consolas, monospace; font-size: .88em; background: #f3f1ec;
+         border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; color: var(--navy); }
+  .callout { background: var(--yellow-soft); border: 1px solid rgba(255, 204, 102, .7); border-radius: 16px;
+             padding: 18px 24px; margin: 0 0 56px; font-weight: 700; color: var(--navy); }
+
+  footer { border-top: 1px solid var(--line); padding-top: 24px; display: flex; flex-wrap: wrap; gap: 12px 24px;
+           align-items: center; justify-content: space-between; font-size: 14px; color: var(--body); }
+  footer img { height: 24px; width: auto; display: block; }
+  footer a { color: var(--navy); font-weight: 700; }
 </style>
 </head>
 <body>
-<main>
-  <p class="label"><span>Teacher workshop</span><span>Canarie</span></p>
+<div class="bg" aria-hidden="true"><div class="blob blue"></div><div class="blob yellow"></div></div>
 
-  <h1>Build your own grading assistant</h1>
+<header>
+  <a href="https://canarie.tech"><img src="https://canarie.tech/logos/canarie.svg" alt="Canarie"></a>
+  <a class="nav-link" href="https://canarie.tech">canarie.tech →</a>
+</header>
+
+<main>
+  <span class="eyebrow">// FOR TEACHERS</span>
+  <h1>Build your own grading assistant.</h1>
   <p class="lead">The AGENTS.md and SKILL.md template from <em>Designing Assessments and Feedback with AI</em>.
     Fill it in once with your rubric, and Codex grades homework and drafts feedback the way you do.</p>
 
-  <a class="btn" href="https://github.com/METorKU/canarie-teacher-training/archive/refs/heads/main.zip">Download the template (ZIP)</a>
+  <div class="actions">
+    <a class="btn primary" href="https://github.com/METorKU/canarie-teacher-training/archive/refs/heads/main.zip">Download the template (ZIP) <span aria-hidden="true">↓</span></a>
+    <a class="btn secondary" href="https://github.com/METorKU/canarie-teacher-training">View the files on GitHub</a>
+  </div>
   <p class="small">Short link: tinyurl.com/canarie-teacher</p>
 
-  <h2>Get started</h2>
-  <ol>
-    <li><div><strong>Unzip the file.</strong> Inside <code>canarie-teacher-training-main</code> are two folders:
-      <code>template</code> is yours to fill in, <code>demo</code> is the IELTS example from the session.</div></li>
-    <li><div><strong>Open the <code>template</code> folder itself in Codex</strong>, not the folder above it.
-      If Codex asks to trust the folder, say yes.</div></li>
-    <li><div><strong>Fill in each [EDIT].</strong> In <code>AGENTS.md</code>: your class. In <code>SKILL.md</code>:
-      the homework, your rubric, 2 or 3 pieces you already marked, and the feedback language.
-      SKILL.md is in the hidden <code>.agents</code> folder; on a Mac, press Cmd + Shift + . in Finder to see it.</div></li>
-    <li><div><strong>Add student work and ask Codex to grade.</strong> Type “Create data/homework.csv and add these
-      3 pieces of work.”, then “Grade homework hw1-s01, hw1-s02 and hw1-s03.” Use codes, never names.</div></li>
-    <li><div><strong>Read the feedback</strong> in the <code>feedback</code> folder.</div></li>
+  <span class="eyebrow">// 5 STEPS</span>
+  <h2>Get started.</h2>
+  <ol class="steps">
+    <li class="card"><span class="tag">UNZIP</span><h3>Unzip the file</h3>
+      <p>Inside <code>canarie-teacher-training-main</code> are two folders: <code>template</code> is yours to fill in,
+        <code>demo</code> is the IELTS example from the session.</p></li>
+    <li class="card"><span class="tag">OPEN</span><h3>Open the template folder in Codex</h3>
+      <p>Open the <code>template</code> folder itself, not the folder above it. If Codex asks to trust the folder, say yes.</p></li>
+    <li class="card"><span class="tag">EDIT</span><h3>Fill in each [EDIT]</h3>
+      <p>In <code>AGENTS.md</code>: your class. In <code>SKILL.md</code>: the homework, your rubric, 2 or 3 pieces you
+        already marked, and the feedback language. SKILL.md is in the hidden <code>.agents</code> folder; on a Mac,
+        press Cmd + Shift + . in Finder to see it.</p></li>
+    <li class="card"><span class="tag">GRADE</span><h3>Add student work and ask Codex to grade</h3>
+      <p>Type “Create data/homework.csv and add these 3 pieces of work.”, then “Grade homework hw1-s01, hw1-s02 and
+        hw1-s03.” Use codes, never names.</p></li>
+    <li class="card"><span class="tag">REVIEW</span><h3>Read the feedback</h3>
+      <p>Open the <code>feedback</code> folder. PDFs or photos instead of a CSV? Make a <code>homework</code> folder
+        inside <code>template</code> with one file per student, named with a code such as <code>hw1-s01.pdf</code>.</p></li>
   </ol>
-  <p class="small">PDFs or photos? Make a <code>homework</code> folder inside <code>template</code> and put in one file
-    per student, named with a code such as <code>hw1-s01.pdf</code>.</p>
 
-  <div class="note">You are still the marker. Check every score and comment before students see it.</div>
+  <div class="callout">You are still the marker. Check every score and comment before students see it.</div>
 
-  <footer><a href="https://github.com/METorKU/canarie-teacher-training">View the files on GitHub</a></footer>
+  <footer>
+    <img src="https://canarie.tech/logos/canarie.svg" alt="Canarie">
+    <span>Teacher workshop template · <a href="https://canarie.tech">canarie.tech</a></span>
+  </footer>
 </main>
 </body>
 </html>
