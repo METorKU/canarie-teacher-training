@@ -26,7 +26,6 @@ For any request to grade, mark, score, calibrate or give feedback on essays, use
 | `image_url` | Chart or diagram for Task 1 Academic, else empty |
 | `essay` | The student's text, exactly as written |
 | `word_count` | Word count of `essay` |
-| `source` | Where the essay came from |
 
 ## data/answer-key.csv columns
 
